@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petshop_app/api/AuthApi.dart';
 import 'package:petshop_app/config/apihelper.dart';
@@ -150,14 +148,14 @@ class _Login extends State<Login>{
       if (jsonResponse!=null){
       }
       // print(jsonResponse['token']);
-      pref.setString('token', jsonResponse['token']);
-      pref.setString('name', jsonResponse['name']);
-      pref.setString('phone', jsonResponse['phone']);
-      pref.setString('email', jsonResponse['email']);
-      pref.setString('address', jsonResponse['address']);
-      pref.setInt('id', jsonResponse['id']);
-      pref.setInt('role', jsonResponse['role']); //role = 1 :admin
-      pref.setString('image', jsonResponse['image']); //role = 1 :admin
+      pref.setString('token', jsonResponse['token'] ?? "");
+      pref.setString('name', jsonResponse['name'] ?? "");
+      pref.setString('phone', jsonResponse['phone'] ?? "");
+      pref.setString('email', jsonResponse['email'] ?? "");
+      pref.setString('address', jsonResponse['address'] ?? "");
+      pref.setInt('id', jsonResponse['id'] ?? 0);
+      pref.setInt('role', jsonResponse['role'] ?? 0); //role = 1 :admin
+      pref.setString('image', jsonResponse['image'] ?? ""); //role = 1 :admin
       Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
       // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => WelcomePage()), (Route<dynamic> route) => false);
     }

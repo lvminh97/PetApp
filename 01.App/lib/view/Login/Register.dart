@@ -262,8 +262,7 @@ class _Register extends State<Register> {
     );
   }
 
-  signUp(String fname, String lname, String email, String password,
-      String c_password) async {
+  signUp(String fname, String lname, String email, String password, String c_password) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     Map data = {
       'fname': fname,
@@ -292,9 +291,6 @@ class _Register extends State<Register> {
     }
     else {
       print("dsa");
-      setState(() {
-
-      });
       _showDialog("Không thành công");
     }
   }

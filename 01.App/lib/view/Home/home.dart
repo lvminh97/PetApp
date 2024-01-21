@@ -104,80 +104,200 @@ class _Home  extends State<Home>{
   return DefaultTabController(length: 3,   child:
   Scaffold(
     drawer: Drawer(
-      child: ListView(
+      child: Column(
         children: [
-          DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child:
-          Column(
-            children: [
-              Center(child: Text("Xin chào !")),
-              Text(name),
-              if(image!="")InkWell(
-                child: CircleAvatar(child: Image.network("${Apihelper.image_base}/avatar/${image}")
-                  ,),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder:(context) =>Information()));
-                },
-              )
-            ],
-          )
-          ),
-          ListTile(
-            title: Text("TRANG CHỦ"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
-            },
-          ),
-          ListTile(
-            title: Text("GIỎ HÀNG"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>CartList()));
-            },
-          ),ListTile(
-            title: Text("TẤT CẢ ĐƠN HÀNG"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("4")));
-            },
-          ),
-          ListTile(
-            title: Text("ĐANG XỬ LÝ"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("0")));
-            },
-          ),
-            ListTile(
-              title: Text("ĐANG GIAO HÀNG"),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("1")));
-              },
+          Container(
+            margin: EdgeInsets.only(top: 30, bottom: 0),
+            child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Column(
+                  children: [
+                    Center(child: Text("Xin chào !")),
+                    Text(name),
+                    if(image!="")InkWell(
+                      child: CircleAvatar(child: Image.network("${Apihelper.image_base}/avatar/${image}")
+                        ,),
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder:(context) =>Information()));
+                      },
+                    )
+                  ],
+                )
             ),
-          ListTile(
-            title: Text("THÀNH CÔNG"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("2")));
-            },
           ),
-          ListTile(
-            title: Text("ĐÃ HỦY"),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("3")));
-            },
-          ),if(login)ListTile(
-            title: Text("ĐĂNG XUẤT"),
-        onTap: (){
-            logout();
-        },
-          )else
-          ListTile(
-            title: Text("ĐĂNG Nhập"),
-            onTap: (){
-              logout();
-            },
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.only(top: 0),
+              decoration: BoxDecoration(
+                color: Pref.theme == "light" ? Colors.white : Color.fromARGB(255, 10, 20, 24)
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                        "TRANG CHỦ",
+                      style: TextStyle(
+                        color: Pref.theme == "light" ? Colors.black : Colors.white
+                      ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                    },
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(left: 18, top: 10, bottom: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            "SETTING",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Pref.theme == "light" ? Colors.black : Colors.white
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 30),
+                            width: 30,
+                            height: 30,
+                            child: TextButton(
+                              onPressed: () async {
+                                Pref.theme = "dark";
+                                await Pref.saveTheme();
+                                setState(() {
+            
+                                });
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.black,
+                                shape: CircleBorder(
+                                    side: BorderSide(
+                                        color: Pref.theme == "dark" ? Colors.red : Colors.black38,
+                                        width: 2
+                                    )
+                                ),
+                              ),
+                              child: Text(""),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            width: 30,
+                            height: 30,
+                            child: TextButton(
+                              onPressed: () async {
+                                Pref.theme = "light";
+                                await Pref.saveTheme();
+                                setState(() {
+            
+                                });
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shape: CircleBorder(
+                                    side: BorderSide(
+                                        color: Pref.theme == "light" ? Colors.red : Colors.grey,
+                                        width: 2
+                                    )
+                                ),
+                              ),
+                              child: Text(""),
+                            ),
+                          )
+                        ],
+                      )
+                  ),
+                  ListTile(
+                    title: Text(
+                      "GIỎ HÀNG",
+                      style: TextStyle(
+                          color: Pref.theme == "light" ? Colors.black : Colors.white
+                      ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>CartList()));
+                    },
+                  ),ListTile(
+                    title: Text(
+                        "TẤT CẢ ĐƠN HÀNG",
+                        style: TextStyle(
+                          color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("4")));
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                        "ĐANG XỬ LÝ",
+                        style: TextStyle(
+                            color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("0")));
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "ĐANG GIAO HÀNG",
+                      style: TextStyle(
+                          color: Pref.theme == "light" ? Colors.black : Colors.white
+                      ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("1")));
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                        "THÀNH CÔNG",
+                        style: TextStyle(
+                            color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("2")));
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                        "ĐÃ HỦY",
+                        style: TextStyle(
+                            color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context) =>ListOrder("3")));
+                    },
+                  ),if(login)ListTile(
+                    title: Text(
+                        "ĐĂNG XUẤT",
+                        style: TextStyle(
+                            color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                    ),
+                    onTap: (){
+                      logout();
+                    },
+                  )else
+                    ListTile(
+                      title: Text(
+                        "ĐĂNG NhẬP",
+                        style: TextStyle(
+                            color: Pref.theme == "light" ? Colors.black : Colors.white
+                        ),
+                      ),
+                      onTap: (){
+                        logout();
+                      },
+                    )
+                ],
+              ),
+            ),
           )
-          ,
         ],
       ),
     ),
@@ -198,7 +318,7 @@ class _Home  extends State<Home>{
             Container(
               padding: EdgeInsets.only(top: 5),
               height: 40,
-              width: 280,
+              width: 270,
               // margin: EdgeInsets.only(),
               child: Stack(
 

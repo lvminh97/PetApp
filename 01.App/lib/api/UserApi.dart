@@ -41,14 +41,14 @@ class UserApi {
       if (jsonResponse!=null){
       }
       // print(jsonResponse['token']);
-      pref.setString('token', jsonResponse['token']);
-      pref.setString('name', jsonResponse['name']);
-      pref.setString('phone', jsonResponse['phone']);
-      pref.setString('email', jsonResponse['email']);
-      pref.setString('address', jsonResponse['address']);
-      pref.setInt('id', jsonResponse['id']);
-      pref.setInt('role', jsonResponse['role']); //role = 1 :admin
-      pref.setString('image', jsonResponse['image']); //role = 1 :admin
+      pref.setString('token', jsonResponse['token'] ?? "");
+      pref.setString('name', jsonResponse['name'] ?? "");
+      pref.setString('phone', jsonResponse['phone'] ?? "");
+      pref.setString('email', jsonResponse['email'] ?? "");
+      pref.setString('address', jsonResponse['address'] ?? "");
+      pref.setInt('id', jsonResponse['id'] ?? "");
+      pref.setInt('role', jsonResponse['role'] ?? ""); //role = 1 :admin
+      pref.setString('image', jsonResponse['image'] ?? ""); //role = 1 :admin
       Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
     }
     else{

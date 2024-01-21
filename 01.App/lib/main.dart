@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:petshop_app/view/Home/home.dart';
+import 'package:petshop_app/config/pref.dart';
 import 'package:petshop_app/view/Welcome.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Pref.loadTheme();
   runApp(MyApp());
 }
 
